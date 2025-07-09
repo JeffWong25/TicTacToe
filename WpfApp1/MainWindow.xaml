@@ -5,8 +5,77 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Tic-Tac-Toe" Height="450" Width="800"
+        Background="{StaticResource BackgroundColor}">
+    <Viewbox>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+                <!--bottom row will use the remaining height -->
+            </Grid.RowDefinitions>
 
-    </Grid>
+            <StackPanel x:Name="TurnPanel"
+                 Orientation="Horizontal"
+                 HorizontalAlignment="Center">
+                <TextBlock FontSize="54"
+                    Text="Player:" />
+                <Image x:Name="PlayerImage"
+                Source="Assets/X15.png"
+                Height="70
+                "/>
+            </StackPanel>
+
+            <Canvas x:Name="GameCanvas"
+             Grid.Row="1"
+             Width="300"
+             Height="300"
+             Margin="20"       >
+                <UniformGrid x:Name="GameGrid"
+                      Width="300"
+                      Height="300"
+                      Rows="3"
+                      Columns="3"
+                      MouseDown="GameGrid_MouseDown">
+                    <UniformGrid.Background>
+                        <ImageBrush ImageSource="Assets/Grid.png"/>
+                    </UniformGrid.Background>
+                </UniformGrid>
+
+                <Line x:Name="Line"
+               Stroke="{StaticResource LineColor}"
+               StrokeThickness="10"
+               StrokeStartLineCap="Round"
+               StrokeEndLineCap="Round"
+               Visibility="Hidden"/>
+            </Canvas>
+
+            <Grid x:Name="EndScreen"
+           Grid.RowSpan="2"
+           Background="{StaticResource BackgroundColor}"
+           Visibility="Hidden">
+                <StackPanel Orientation="Vertical"
+                     VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal"
+                         HorizontalAlignment="Center">
+                        <TextBlock x:Name="ResultText"
+                            FontSize="50"
+                            Text="Winner: "/>
+                        <Image x:Name="WinnerImage"
+                        Height="70"
+                        Source="Assets/X15.png"/>
+                    </StackPanel>
+                    <Button Content="Play Again"
+                     Background="{StaticResource BackgroundColor}"
+                     FontSize="30"
+                     Width="200"
+                     Margin="0,20,0,0"
+                     Padding="0,0,0,5"
+                     BorderBrush="Black"
+                     Click="Button_Click"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Viewbox>
+   
 </Window>
